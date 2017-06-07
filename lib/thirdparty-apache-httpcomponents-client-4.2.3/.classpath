@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="commons-codec-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="commons-logging-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="fluent-hc-4.2.3.jar" sourcepath="httpcomponents-client-4.2.3-src.zip"/>
+	<classpathentry exported="true" kind="lib" path="httpclient-4.2.3.jar" sourcepath="httpcomponents-client-4.2.3-src.zip"/>
+	<classpathentry exported="true" kind="lib" path="httpclient-cache-4.2.3.jar" sourcepath="httpcomponents-client-4.2.3-src.zip"/>
+	<classpathentry exported="true" kind="lib" path="httpcore-4.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="httpmime-4.2.3.jar" sourcepath="httpcomponents-client-4.2.3-src.zip"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
