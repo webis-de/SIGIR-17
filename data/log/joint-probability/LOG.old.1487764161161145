@@ -1,0 +1,71 @@
+2017/02/17-13:08:23.776463 7fd6a4e12700 RocksDB version: 4.9.0
+2017/02/17-13:08:23.776515 7fd6a4e12700 Git sha rocksdb_build_git_sha:
+2017/02/17-13:08:23.776518 7fd6a4e12700 Compile date Aug 18 2016
+2017/02/17-13:08:23.776524 7fd6a4e12700 DB SUMMARY
+2017/02/17-13:08:23.776668 7fd6a4e12700 CURRENT file:  CURRENT
+2017/02/17-13:08:23.776671 7fd6a4e12700 IDENTITY file:  IDENTITY
+2017/02/17-13:08:23.776680 7fd6a4e12700 MANIFEST file:  MANIFEST-000198 size: 549 Bytes
+2017/02/17-13:08:23.776684 7fd6a4e12700 SST files in ./data/log/joint-probability/ dir, Total Num: 6, files: 000088.sst 000103.sst 000110.sst 000113.sst 000119.sst 000166.sst 
+2017/02/17-13:08:23.776765 7fd6a4e12700 Write Ahead Log file in ./data/log/joint-probability: 000199.log size: 0 ; 
+2017/02/17-13:08:23.776774 7fd6a4e12700          Options.error_if_exists: 0
+2017/02/17-13:08:23.776775 7fd6a4e12700        Options.create_if_missing: 1
+2017/02/17-13:08:23.776777 7fd6a4e12700          Options.paranoid_checks: 1
+2017/02/17-13:08:23.776778 7fd6a4e12700                      Options.env: 0x7fd682b738e0
+2017/02/17-13:08:23.776780 7fd6a4e12700                 Options.info_log: 0x7fd69c396440
+2017/02/17-13:08:23.776781 7fd6a4e12700           Options.max_open_files: -1
+2017/02/17-13:08:23.776783 7fd6a4e12700 Options.max_file_opening_threads: 16
+2017/02/17-13:08:23.776784 7fd6a4e12700       Options.max_total_wal_size: 0
+2017/02/17-13:08:23.776786 7fd6a4e12700        Options.disableDataSync: 0
+2017/02/17-13:08:23.776787 7fd6a4e12700              Options.use_fsync: 0
+2017/02/17-13:08:23.776789 7fd6a4e12700      Options.max_log_file_size: 0
+2017/02/17-13:08:23.776790 7fd6a4e12700 Options.max_manifest_file_size: 18446744073709551615
+2017/02/17-13:08:23.776792 7fd6a4e12700      Options.log_file_time_to_roll: 0
+2017/02/17-13:08:23.776794 7fd6a4e12700      Options.keep_log_file_num: 1000
+2017/02/17-13:08:23.776795 7fd6a4e12700   Options.recycle_log_file_num: 0
+2017/02/17-13:08:23.776796 7fd6a4e12700        Options.allow_os_buffer: 1
+2017/02/17-13:08:23.776798 7fd6a4e12700       Options.allow_mmap_reads: 0
+2017/02/17-13:08:23.776799 7fd6a4e12700       Options.allow_fallocate: 1
+2017/02/17-13:08:23.776801 7fd6a4e12700      Options.allow_mmap_writes: 0
+2017/02/17-13:08:23.776802 7fd6a4e12700          Options.create_missing_column_families: 0
+2017/02/17-13:08:23.776804 7fd6a4e12700                              Options.db_log_dir: 
+2017/02/17-13:08:23.776805 7fd6a4e12700                                 Options.wal_dir: ./data/log/joint-probability
+2017/02/17-13:08:23.776807 7fd6a4e12700                Options.table_cache_numshardbits: 6
+2017/02/17-13:08:23.776809 7fd6a4e12700     Options.delete_obsolete_files_period_micros: 21600000000
+2017/02/17-13:08:23.776810 7fd6a4e12700              Options.base_background_compactions: 1
+2017/02/17-13:08:23.776812 7fd6a4e12700              Options.max_background_compactions: 1
+2017/02/17-13:08:23.776813 7fd6a4e12700                      Options.max_subcompactions: 1
+2017/02/17-13:08:23.776815 7fd6a4e12700                  Options.max_background_flushes: 1
+2017/02/17-13:08:23.776816 7fd6a4e12700                         Options.WAL_ttl_seconds: 0
+2017/02/17-13:08:23.776817 7fd6a4e12700                       Options.WAL_size_limit_MB: 0
+2017/02/17-13:08:23.776819 7fd6a4e12700             Options.manifest_preallocation_size: 4194304
+2017/02/17-13:08:23.776821 7fd6a4e12700                          Options.allow_os_buffer: 1
+2017/02/17-13:08:23.776822 7fd6a4e12700                         Options.allow_mmap_reads: 0
+2017/02/17-13:08:23.776825 7fd6a4e12700                        Options.allow_mmap_writes: 0
+2017/02/17-13:08:23.776827 7fd6a4e12700                      Options.is_fd_close_on_exec: 1
+2017/02/17-13:08:23.776828 7fd6a4e12700                    Options.stats_dump_period_sec: 600
+2017/02/17-13:08:23.776830 7fd6a4e12700                    Options.advise_random_on_open: 1
+2017/02/17-13:08:23.776831 7fd6a4e12700                     Options.db_write_buffer_size: 0d
+2017/02/17-13:08:23.776833 7fd6a4e12700          Options.access_hint_on_compaction_start: NORMAL
+2017/02/17-13:08:23.776834 7fd6a4e12700   Options.new_table_reader_for_compaction_inputs: 0
+2017/02/17-13:08:23.776850 7fd6a4e12700                Options.compaction_readahead_size: 0d
+2017/02/17-13:08:23.776852 7fd6a4e12700                Options.random_access_max_buffer_size: 1048576d
+2017/02/17-13:08:23.776854 7fd6a4e12700               Options.writable_file_max_buffer_size: 1048576d
+2017/02/17-13:08:23.776855 7fd6a4e12700                       Options.use_adaptive_mutex: 0
+2017/02/17-13:08:23.776857 7fd6a4e12700                             Options.rate_limiter: (nil)
+2017/02/17-13:08:23.776859 7fd6a4e12700      Options.sst_file_manager.rate_bytes_per_sec: 0
+2017/02/17-13:08:23.776860 7fd6a4e12700                           Options.bytes_per_sync: 0
+2017/02/17-13:08:23.776862 7fd6a4e12700                       Options.wal_bytes_per_sync: 0
+2017/02/17-13:08:23.776863 7fd6a4e12700                        Options.wal_recovery_mode: 2
+2017/02/17-13:08:23.776864 7fd6a4e12700                   Options.enable_thread_tracking: 0
+2017/02/17-13:08:23.776866 7fd6a4e12700          Options.allow_concurrent_memtable_write: 0
+2017/02/17-13:08:23.776867 7fd6a4e12700       Options.enable_write_thread_adaptive_yield: 0
+2017/02/17-13:08:23.776869 7fd6a4e12700              Options.write_thread_max_yield_usec: 100
+2017/02/17-13:08:23.776870 7fd6a4e12700             Options.write_thread_slow_yield_usec: 3
+2017/02/17-13:08:23.776872 7fd6a4e12700                                Options.row_cache: None
+2017/02/17-13:08:23.776873 7fd6a4e12700        Options.wal_filter: None
+2017/02/17-13:08:23.776876 7fd6a4e12700 Compression algorithms supported:
+2017/02/17-13:08:23.776878 7fd6a4e12700 	Snappy supported: 1
+2017/02/17-13:08:23.776879 7fd6a4e12700 	Zlib supported: 1
+2017/02/17-13:08:23.776881 7fd6a4e12700 	Bzip supported: 1
+2017/02/17-13:08:23.776882 7fd6a4e12700 	LZ4 supported: 1
+2017/02/17-13:08:23.776884 7fd6a4e12700 Fast CRC32 supported: 0
