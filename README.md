@@ -11,6 +11,6 @@ _Microsoft Speller Challenge_ in 2011.
 to: <code>${ProjectFileDir}/conf/subscription.properties </code>
 3. Open project in an IDE (e.g. _IntelliJ, Eclipse_)
 4. Include thirdparty libraries in <code>${ProjectFileDir}/lib/</code> to your classpath
-5. Specify the java library path for the shared library of Multimap as VM option  
+5. Specify the Java library path for the shared library of Multimap as VM option  
  <code>-Djava.library.path=/usr/local/lib</code>
 6. For an example: Run main method of <code>de.webis.speller.LueckSpeller</code>
