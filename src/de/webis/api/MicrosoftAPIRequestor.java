@@ -23,7 +23,7 @@ import java.util.*;
 /**
  * This class retrieves information from several language analysis APIs from Microsoft.
  * All information gathered will be saved on disk. To query results not already contained
- * in the logs, you have to put a valid API subscription key in <code>/resources/subscription.properties</code>
+ * in the logs, you have to put a valid API subscription key in <code>/conf/subscription.properties</code>
  */
 public class MicrosoftAPIRequestor {
 
@@ -43,7 +43,7 @@ public class MicrosoftAPIRequestor {
 
         try {
             BufferedInputStream stream = new BufferedInputStream(
-                    new FileInputStream("./resources/subscription.properties"));
+                    new FileInputStream("./conf/subscription.properties"));
 
             subscriptionKeys = new Properties();
             subscriptionKeys.load(stream);
