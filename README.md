@@ -1,8 +1,11 @@
-## Gord Lueck Speller
+## Query Spelling Evaluation Framework
 
-A reimplementation of the spelling algorithm presented by _Gord Lueck_ in his paper   
-_"A Data-Driven Approach for Correction Search Queries"_ as entry to the   
-_Microsoft Speller Challenge_ in 2011.
+An extendable framework for evaluation of query spelling methods based  
+on <code> EF1 </code> and <code> Precision@1 </code> measures as used in the _Microsoft Speller Challenge_ in 2011.  
+
+Additionally the reimplementation of the spelling algorithm presented by _Gord Lueck_ in his paper   
+_"A Data-Driven Approach for Correction Search Queries"_ (also an entry to the speller contest)  
+is contained in this framework.
 ### Installation
 1. Install [_Multimap_](http://multimap.io/) as described [here](http://multimap.io/installation-linux/)  
  Make sure you've installed the shared jni library as well
