@@ -81,7 +81,7 @@ public class CorpusCorrection {
      * Check whether the ground truth does not contain the query
      * @return true if the query is not contained in the ground truth
      */
-    public boolean containsErrorLowerBound(){
+    public boolean isDefinitelyMisspelled(){
         return !groundTruth.contains(query);
     }
 
@@ -89,7 +89,7 @@ public class CorpusCorrection {
      * Check whether the ground truth contains an alternation which is not the query itself
      * @return true if there are other alternations for the query besides the query itself
      */
-    public boolean containsErrorUpperBound(){
+    public boolean isPotentiallyMisspelled(){
         if(groundTruth.contains(query))
             for(String suggestion: groundTruth){
                 if(!suggestion.equals(query)){
@@ -105,7 +105,7 @@ public class CorpusCorrection {
      * @return true if there is an error
      */
     public boolean containsError(){
-        return containsErrorLowerBound() || containsErrorUpperBound();
+        return isDefinitelyMisspelled() || isPotentiallyMisspelled();
     }
 
     /**
