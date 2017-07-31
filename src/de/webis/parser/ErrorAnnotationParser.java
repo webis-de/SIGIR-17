@@ -12,12 +12,12 @@ import java.util.Set;
  * Class handling error type annotations.
  */
 public class ErrorAnnotationParser {
-    private static final int spaceError = 2;
-    private static final int characterError = 3;
-    private static final int insertionError = 4;
-    private static final int deletionError = 5;
-    private static final int substitutionError = 6;
-    private static final int transpositionError = 7;
+    private static final int spaceError = 3;
+    private static final int characterError = 4;
+    private static final int insertionError = 5;
+    private static final int deletionError = 6;
+    private static final int substitutionError = 7;
+    private static final int transpositionError = 8;
 
     /**
      * Get the contained error types for a single line from the error annotation file

@@ -10,6 +10,8 @@ def identifyMistakeTypes(file):
             delimiter = ';'
 
             # Write file header
+            outputFile.write('ID')
+            outputFile.write(delimiter)
             outputFile.write('String with mistake(s)')
             outputFile.write(delimiter)
             outputFile.write('Possible Correction')
@@ -37,9 +39,11 @@ def identifyMistakeTypes(file):
                 splitted = re.split(r'[\t;]', cleanLineStr.rstrip('\t'))
                 #splitted = list(filter(None, splitted))
 
-                mistakeString = splitted[0]
-                for colIndex in range(1, min(len(splitted), 8)):
+                mistakeString = splitted[1]
+                for colIndex in range(2, min(len(splitted), 9)):
                     if len(splitted[colIndex]) > 0:
+                        outputFile.write(splitted[0])
+                        outputFile.write(delimiter)
                         outputFile.write(mistakeString)
                         outputFile.write(delimiter)
                         outputFile.write(splitted[colIndex])

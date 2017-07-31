@@ -36,13 +36,13 @@ public class WebisParser extends CorpusParser {
         Set<String> sugggestions = new LinkedHashSet<>();
         String[] split = line.split(";");
 
-        for(int i = 1; i < split.length && i < 8; i++){
+        for(int i = 2; i < split.length && i < 9; i++){
             if(!split[i].isEmpty())
                 sugggestions.add(split[i]);
         }
 
 
-        return new CorpusCorrection(split[0], sugggestions);
+        return new CorpusCorrection(split[1], sugggestions);
     }
 
     /**
