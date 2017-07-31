@@ -68,7 +68,7 @@ public abstract class CorpusParser {
                         break;
                     }
 
-                    if (!lineError.split(";")[0].equals(correction.getQuery())) {
+                    if (!lineError.split(";")[1].equals(correction.getQuery())) {
                         after = true;
                         break;
                     }
