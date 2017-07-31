@@ -84,6 +84,13 @@ public class LueckSpeller extends Speller {
         TreeMap<String, Double> sortedScores = new TreeMap<String, Double>(new ValueComparator(scores));
         sortedScores.putAll(scores);
 
+
+        Double sum = sortedScores.values().stream().mapToDouble(Number::doubleValue).sum();
+
+        if(sum < 0.95){
+            System.out.println(sum +": "+sortedScores);
+        }
+
         return new LinkedHashMap<>(sortedScores);
     }
 

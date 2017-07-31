@@ -14,7 +14,7 @@ public class WebisParser extends CorpusParser {
      */
     public WebisParser(){
         super("./data/corpora/webis-query-speller-corpus/webis-query-speller-corpus.csv",
-                "./data/corpora/webis-query-speller-corpus/webis-query-speller-corpus-error-annotations.txt");
+                "./data/corpora/webis-query-speller-corpus/webis-query-speller-corpus-error-annotations.csv");
     }
 
     /**

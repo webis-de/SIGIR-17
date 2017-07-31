@@ -8,6 +8,7 @@ import de.webis.parser.WebisParser;
 import de.webis.speller.BaselineSpeller;
 import de.webis.speller.LueckSpeller;
 import de.webis.speller.Speller;
+import de.webis.utils.MathUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
@@ -27,6 +28,7 @@ public class Evaluator {
      * @param parser            parser specifying corpus to evaluate on
      */
     public void evaluateSpeller(Speller spellAlgorithm, CorpusParser parser){
+        System.out.println("Evaluate "+spellAlgorithm.getSpellTag()+" algorithm on "+parser.getCorpusTag()+"...");
         List<CorpusCorrection> corpusCorrections = parser.parse();
         List<SpellingResult> spellingResults = new ArrayList<>();
 
@@ -77,55 +79,72 @@ public class Evaluator {
                 spellingWithoutError.add(result);
             }
 
-            if(spellingResults.size() % 10 == 0){
-                System.out.print("\rCorrection: "+spellingResults.size());
+            if(spellingResults.size() % 100 == 0){
+                System.out.print("\rProcessed queries: "+spellingResults.size());
             }
 
             if(spellingResults.size() % 1000 == 0){
                 spellAlgorithm.flush();
             }
         }
+        System.out.print("\rProcessed queries: "+spellingResults.size());
         System.out.println("\nDone.\n");
 
-        System.out.println(spellAlgorithm.getSpellTag());
+        System.out.println("Results:");
+        System.out.println("---------------");
         System.out.println("General:");
         System.out.println(SpellingResult.getEF1(spellingResults));
         System.out.println("Precision@1: "+SpellingResult.getPrecision(spellingResults));
+        System.out.println("---------------");
         System.out.println();
 
+        System.out.println("---------------");
         System.out.println("No Error:");
         System.out.println(SpellingResult.getEF1(spellingWithoutError));
         System.out.println("Precision@1: "+SpellingResult.getPrecision(spellingWithoutError));
+        System.out.println("---------------");
         System.out.println();
 
+        System.out.println("---------------");
         System.out.println("Space Error:");
         System.out.println(SpellingResult.getEF1(spellingSpaceError));
         System.out.println("Precision@1: "+SpellingResult.getPrecision(spellingSpaceError));
+        System.out.println("---------------");
         System.out.println();
 
+        System.out.println("---------------");
         System.out.println("Character Error:");
         System.out.println(SpellingResult.getEF1(spellingCharacterError));
         System.out.println("Precision@1: "+SpellingResult.getPrecision(spellingCharacterError));
+        System.out.println("---------------");
         System.out.println();
 
+        System.out.println("---------------");
         System.out.println("Insertion Error:");
         System.out.println(SpellingResult.getEF1(spellingInsertionError));
         System.out.println("Precision@1: "+SpellingResult.getPrecision(spellingInsertionError));
+        System.out.println("---------------");
         System.out.println();
 
+        System.out.println("---------------");
         System.out.println("Deletion Error:");
         System.out.println(SpellingResult.getEF1(spellingDeletionError));
         System.out.println("Precision@1: "+SpellingResult.getPrecision(spellingDeletionError));
+        System.out.println("---------------");
         System.out.println();
 
+        System.out.println("---------------");
         System.out.println("Substitution Error:");
         System.out.println(SpellingResult.getEF1(spellingSubstitutionError));
         System.out.println("Precision@1: "+SpellingResult.getPrecision(spellingSubstitutionError));
+        System.out.println("---------------");
         System.out.println();
 
+        System.out.println("---------------");
         System.out.println("Transposition Error:");
         System.out.println(SpellingResult.getEF1(spellingTranspositionError));
         System.out.println("Precision@1: "+SpellingResult.getPrecision(spellingTranspositionError));
+        System.out.println("---------------");
         System.out.println();
 
         try {
@@ -219,15 +238,15 @@ public class Evaluator {
 
         int corpusSize = corpusCorrections.size();
 
-        double misspellingPercentage = (double)(numMisspellings) / (double)(corpusSize) * 100.0;
-        double potentialMisspellingPercentage = (double)(numPotentialMisspellings) / (double)(corpusSize) * 100.0;
-        double definiteMisspellingPercentage = (double)(numDefiniteMisspellings) / (double)(corpusSize) * 100.0;
+        double misspellingPercentage = MathUtil.roundDouble((double)(numMisspellings) / (double)(corpusSize) * 100.0, 2);
+        double potentialMisspellingPercentage = MathUtil.roundDouble((double)(numPotentialMisspellings) / (double)(corpusSize) * 100.0, 2);
+        double definiteMisspellingPercentage = MathUtil.roundDouble((double)(numDefiniteMisspellings) / (double)(corpusSize) * 100.0, 2);
 
-        double avgMinLevenshteinDistDefinite = (double)(sumMinLevenshteinDistDefinite) / (double)(numDefiniteMisspellings);
-        double avgMinLevenshteinDist = (double)(sumMinLevenhsteinDist) / (double)(numMisspellings);
+        double avgMinLevenshteinDistDefinite = MathUtil.roundDouble((double)(sumMinLevenshteinDistDefinite) / (double)(numDefiniteMisspellings),2);
+        double avgMinLevenshteinDist = MathUtil.roundDouble((double)(sumMinLevenhsteinDist) / (double)(numMisspellings),2);
 
-        double numSpellingVariantsPerQueryPotential = (double)(numSpellingVariantsPotential) / (double)(numPotentialMisspellings);
-        double numSpellingVariantsPerQueryDefinite = (double)(numSpellingVariantsDefinite) / (double)(numDefiniteMisspellings);
+        double numSpellingVariantsPerQueryPotential = MathUtil.roundDouble((double)(numSpellingVariantsPotential) / (double)(numPotentialMisspellings), 2);
+        double numSpellingVariantsPerQueryDefinite = MathUtil.roundDouble((double)(numSpellingVariantsDefinite) / (double)(numDefiniteMisspellings),2);
 
         Map<String, Double> numQueriesWithErrorType =
                 ErrorAnnotationParser.getErrorTypeDistributionPerQuery(
@@ -257,7 +276,7 @@ public class Evaluator {
         System.out.println();
         System.out.println("Number of queries with error:");
         System.out.println(numQueriesWithErrorType);
-        numQueriesWithErrorType.replaceAll((key, value) -> value / (double) numMisspellings);
+        numQueriesWithErrorType.replaceAll((key, value) -> MathUtil.roundDouble(value / (double) numMisspellings, 4));
         System.out.println(numQueriesWithErrorType);
         System.out.println();
         System.out.println();
@@ -267,7 +286,10 @@ public class Evaluator {
         Integer finalNumSpellingVariantsPotential = numSpellingVariantsPotential;
         numSpellingsWithErrorType.replaceAll(
                 (key, value) ->
-                        value / (double)(finalNumSpellingVariantsDefinite + finalNumSpellingVariantsPotential));
+                        MathUtil.roundDouble(
+                                value / (double)(finalNumSpellingVariantsDefinite + finalNumSpellingVariantsPotential),4
+                        )
+        );
         System.out.println(numSpellingsWithErrorType);
         System.out.println();
     }

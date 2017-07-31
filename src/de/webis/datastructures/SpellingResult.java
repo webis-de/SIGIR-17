@@ -1,7 +1,10 @@
 package de.webis.datastructures;
 
+import de.webis.utils.MathUtil;
 import de.webis.utils.ValueComparator;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 /**
@@ -53,14 +56,14 @@ public class SpellingResult {
      * @return          confidence of the specified spelling result or
      *                  null if there is no such result
      */
-    public Double getConfidence(String result){
+    public double getConfidence(String result){
         if(rankedResults.containsKey(result))
             return rankedResults.get(result);
         else{
             System.out.println("ERROR: No prob found for \""+result+"\"");
         }
 
-        return null;
+        return -1.0;
     }
 
     /**
@@ -101,8 +104,8 @@ public class SpellingResult {
      * @return        EP, ER and EF1
      */
     public static EF1 getEF1(List<SpellingResult> results){
-        Double sumEP = 0.0;
-        Double sumER = 0.0;
+        double sumEP = 0.0;
+        double sumER = 0.0;
 
         for(SpellingResult result: results){
             for(String alternative: result.getResultSet()){
@@ -118,10 +121,15 @@ public class SpellingResult {
             }
         }
 
-        Double EP = (1.0 / results.size()) * sumEP;
-        Double ER = (1.0 / results.size()) * sumER;
+        double EP = 1.0 / results.size() * sumEP;
+        double ER = 1.0 / results.size() * sumER;
+        double EF1 = 2.0 * EP * ER / (ER + EP);
 
-        return new EF1(EP, ER, (2.0*EP*ER)/(ER+EP));
+        EP = MathUtil.roundDouble(EP);
+        ER = MathUtil.roundDouble(ER);
+        EF1 = MathUtil.roundDouble(EF1);
+
+        return new EF1(EP, ER, EF1);
     }
 
     /**
@@ -129,12 +137,12 @@ public class SpellingResult {
      * @param results list of results of a spell algorithm
      * @return        Precision@1
      */
-    public static Double getPrecision(List<SpellingResult> results){
-        Double precision = 0.0;
+    public static double getPrecision(List<SpellingResult> results){
+        double precision = 0.0;
 
         for(SpellingResult result: results){
             if(result.rankedResults.size() > 0){
-                Double firstValue = result.rankedResults.entrySet().iterator().next().getValue();
+                double firstValue = result.rankedResults.entrySet().iterator().next().getValue();
 
                 for(Map.Entry<String, Double> entry: result.rankedResults.entrySet()){
                     if(!entry.getValue().equals(firstValue)){
@@ -150,7 +158,7 @@ public class SpellingResult {
 
         }
 
-        return precision / (double)(results.size());
+        return MathUtil.roundDouble(precision / (double)(results.size()));
     }
 
     @Override
@@ -159,18 +167,9 @@ public class SpellingResult {
 
         builder.append(query);
 
-        Iterator i = rankedResults.keySet().iterator();
-
-        while (i.hasNext()){
-            builder.append(", ");
-
-            builder.append(i.next());
-        }
-
-        builder.append(", ground truth: ");
-
-        for(String alternation: groundTruth){
-            builder.append(", ").append(alternation);
+        for(Map.Entry<String, Double> entry: rankedResults.entrySet()){
+            builder.append(";").append(entry.getKey())
+                    .append(";").append(entry.getValue());
         }
 
         return builder.toString();

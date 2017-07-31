@@ -26,7 +26,7 @@ public class ErrorAnnotationParser {
      */
     public static Set<String> getExistingErrorTypes(String annotationLine){
         Set<String> errors = new HashSet<>();
-        String[] split = annotationLine.split("\t");
+        String[] split = annotationLine.split(";");
 
         if(Integer.valueOf(split[spaceError]) > 0){
             errors.add("space");
@@ -72,13 +72,13 @@ public class ErrorAnnotationParser {
             String line = reader.readLine();
 
             while((line = reader.readLine()) != null){
-                if(!query.equals(line.split("\t")[0])){
+                if(!query.equals(line.split(";")[0])){
                     for(String annotation: currentAnnotations){
                         errorTypeFrequencies.put(annotation,
                                 errorTypeFrequencies.getOrDefault(annotation, 0.0) + 1.0);
                     }
 
-                    query = line.split("\t")[0];
+                    query = line.split(";")[0];
                     currentAnnotations.clear();
                 }
 
@@ -135,7 +135,7 @@ public class ErrorAnnotationParser {
 
     private static Map<String, Double> countErrorTypes(String annotationLine){
         Map<String, Double> errorAnnotations = new HashMap<>();
-        String[] split = annotationLine.split("\t");
+        String[] split = annotationLine.split(";");
 
         errorAnnotations.put("space",
                 errorAnnotations.getOrDefault("space", 0.0) + Double.valueOf(split[spaceError]));
