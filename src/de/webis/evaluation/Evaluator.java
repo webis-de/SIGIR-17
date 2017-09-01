@@ -334,7 +334,7 @@ public class Evaluator {
         evaluator.evaluateSpeller(new BaselineSpeller(), new WebisParser());
         evaluator.evaluateSpeller(new GoogleSpeller(), new WebisParser());
         evaluator.evaluateSpeller(new BingSpeller(), new WebisParser());
-//        evaluator.evaluateSpeller(new LueckSpeller(), new WebisParser());
+        evaluator.evaluateSpeller(new LueckSpeller(), new WebisParser());
     }
 
 }
