@@ -5,13 +5,13 @@ import de.webis.datastructures.CorpusCorrection;
 import de.webis.parser.CorpusParser;
 import de.webis.parser.ErrorAnnotationParser;
 import de.webis.parser.WebisParser;
-import de.webis.speller.BaselineSpeller;
-import de.webis.speller.LueckSpeller;
-import de.webis.speller.Speller;
+import de.webis.speller.*;
 import de.webis.utils.MathUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +22,14 @@ import java.util.Map;
  * determine the quality of a spelling algorithm.
  */
 public class Evaluator {
+    private final String timeStamp;
+
+    public Evaluator(){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd--HH-mm-ss");
+        LocalDateTime now = LocalDateTime.now();
+        timeStamp = dateTimeFormatter.format(now);
+    }
+
     /**
      * Print EF1 and Precision@1 measures to evaluate a spelling algorithm
      * @param spellAlgorithm    algorithm to evaluate
@@ -148,11 +156,11 @@ public class Evaluator {
         System.out.println();
 
         try {
-            writeFile(spellingResults, "./data/output/"+spellAlgorithm.getSpellTag()+"/"
-                    +spellAlgorithm.getSpellTag()+"-"+parser.getCorpusTag()+"-spelling.csv");
+            writeFile(spellingResults, "./data/evaluation-logs/"+timeStamp
+                    +"/"+parser.getCorpusTag()+"-"+spellAlgorithm.getSpellTag()+"-confidences.csv");
 
-            PrintWriter writer = new PrintWriter(new FileWriter("./data/output/"+spellAlgorithm.getSpellTag()
-                    +"/"+spellAlgorithm.getSpellTag()+"-"+parser.getCorpusTag()+"-ef1.txt"));
+            PrintWriter writer = new PrintWriter(new FileWriter("./data/evaluation-logs/"+timeStamp
+                    +"/"+parser.getCorpusTag()+"-"+spellAlgorithm.getSpellTag()+"-ef1.txt"));
 
             writer.println(SpellingResult.getEF1(spellingResults));
             writer.println("Precision@1: "+SpellingResult.getPrecision(spellingResults));
@@ -324,7 +332,9 @@ public class Evaluator {
 
         /* WEBIS CORPUS - EF1 Evaluation */
         evaluator.evaluateSpeller(new BaselineSpeller(), new WebisParser());
-        evaluator.evaluateSpeller(new LueckSpeller(), new WebisParser());
+        evaluator.evaluateSpeller(new GoogleSpeller(), new WebisParser());
+        evaluator.evaluateSpeller(new BingSpeller(), new WebisParser());
+//        evaluator.evaluateSpeller(new LueckSpeller(), new WebisParser());
     }
 
 }
