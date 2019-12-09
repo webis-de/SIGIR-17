@@ -13,8 +13,8 @@ public class WebisParser extends CorpusParser {
      * Class constructor (init with default file paths)
      */
     public WebisParser(){
-        super("./data/corpora/webis-query-speller-corpus/webis-query-speller-corpus.csv",
-                "./data/corpora/webis-query-speller-corpus/webis-query-speller-corpus-error-annotations.csv");
+        super("./data/corpora/webis-qspell-17/corpus-webis-qspell-17.csv",
+                "./data/corpora/webis-qspell-17/corpus-webis-qspell-17-error-annotations.csv");
     }
 
     /**
@@ -32,7 +32,7 @@ public class WebisParser extends CorpusParser {
      * @return      correction object
      */
     @Override
-    protected CorpusCorrection getCorrection(String line) {
+    public CorpusCorrection getCorrection(String line) {
         Set<String> sugggestions = new LinkedHashSet<>();
         String[] split = line.split(";");
 
@@ -42,7 +42,7 @@ public class WebisParser extends CorpusParser {
         }
 
 
-        return new CorpusCorrection(split[1], sugggestions);
+        return new CorpusCorrection(split[0], split[1], sugggestions);
     }
 
     /**

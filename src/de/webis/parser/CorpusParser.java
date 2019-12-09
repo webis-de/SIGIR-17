@@ -99,5 +99,5 @@ public abstract class CorpusParser {
      * @param line  line from corpus
      * @return      CorpusCorrection object for the given line
      */
-    protected abstract CorpusCorrection getCorrection(String line);
+    public abstract CorpusCorrection getCorrection(String line);
 }

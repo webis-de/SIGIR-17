@@ -10,6 +10,7 @@ import java.util.Set;
  * and optionally annotated error types.
  */
 public class CorpusCorrection {
+    private String id;
     private String query;
     private Set<String> groundTruth;
     private Set<String> errorAnnotations;
@@ -20,6 +21,13 @@ public class CorpusCorrection {
      * @param groundTruth   spelling variants for the query of the corpus
      */
     public CorpusCorrection(String query, Set<String> groundTruth){
+        this.query = query;
+        this.groundTruth = groundTruth;
+        errorAnnotations = new HashSet<>();
+    }
+
+    public CorpusCorrection(String id, String query, Set<String> groundTruth){
+        this.id = id;
         this.query = query;
         this.groundTruth = groundTruth;
         errorAnnotations = new HashSet<>();
@@ -128,10 +136,14 @@ public class CorpusCorrection {
     public String toString(){
         StringBuilder builder = new StringBuilder();
 
-        builder.append(query).append("\t");
+        if(id != null){
+            builder.append(id);
+        }
+
+        builder.append(";").append(query);
 
         for(String suggestion: groundTruth){
-            builder.append(suggestion).append("\t");
+            builder.append(";").append(suggestion);
         }
 
         return builder.toString().trim();
